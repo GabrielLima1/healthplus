@@ -3,6 +3,8 @@ package br.com.fiap.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.fiap.beans.FormularioContato;
 import br.com.fiap.conexao.Conexao;
@@ -27,4 +29,22 @@ public class FormularioContatoDAO {
 		stmt.executeUpdate();
 		return "Cadastrado com Sucesso!";
 	}
+	
+	public List<FormularioContato> trasTudo() throws Exception {
+		List<FormularioContato> form = new ArrayList<FormularioContato>();
+		stmt = con.prepareStatement("SELECT * FROM FORMULARIO_CONTATO");
+		rs = stmt.executeQuery();
+		while(rs.next()) {
+			form.add(new FormularioContato(rs.getInt("cod_contato"),
+										   rs.getString("nome_contato"),
+										   rs.getString("email_contato"),
+										   rs.getString("mensagem_contato"),
+										   rs.getString("tipo_contato")));
+		}
+		
+		return form;
+		
+	}
+	
+	
 }
