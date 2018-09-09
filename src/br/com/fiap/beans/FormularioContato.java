@@ -10,6 +10,7 @@ public class FormularioContato {
 	public int getCodigo() {
 		return codigo;
 	}
+	
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
@@ -47,11 +48,12 @@ public class FormularioContato {
 	}
 	
 	public FormularioContato(int codigo, String nome, String email, String mensagem, String tipo) {
-		setCodigo(codigo);
-		setNome(nome);
-		setEmail(email);
-		setMensagem(mensagem);
-		setTipo(tipo);
+		super();
+		this.codigo = codigo;
+		this.nome =  nome;
+		this.email = email;
+		this.mensagem = mensagem;
+		this.tipo = tipo;
 	}
 	
 	public void setAll(int codigo, String nome, String email, String mensagem, String tipo) {
