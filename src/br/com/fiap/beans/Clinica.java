@@ -14,7 +14,7 @@ public class Clinica {
 		private String cnpj;
 		private String horario;
 		private Especialidade especialidade;
-		private PlanoDeSaude plano;
+		private PlanoSaude plano;
 			
 		
 		public Clinica() {
@@ -24,7 +24,7 @@ public class Clinica {
 
 		public Clinica(String nome, String logradouro, String bairro, String cidade, String estado, String cep,
 				String telefone, String site, String email, String cnpj, String horario, Especialidade especialidade,
-				PlanoDeSaude plano) {
+				PlanoSaude plano) {
 			super();
 			setNome(nome);
 			setLogradouro(logradouro);
@@ -44,7 +44,7 @@ public class Clinica {
 		
 		public void setAll(String nome, String logradouro, String bairro, String cidade, String estado, String cep,
 				String telefone, String site, String email, String cnpj, String horario, Especialidade especialidade,
-				PlanoDeSaude plano) {
+				PlanoSaude plano) {
 			setNome(nome);
 			setLogradouro(logradouro);
 			setBairro(bairro);
@@ -206,10 +206,10 @@ public class Clinica {
 		public void setEspecialidade(Especialidade especialidade) {
 			this.especialidade = especialidade;
 		}
-		public PlanoDeSaude getPlano() {
+		public PlanoSaude getPlano() {
 			return plano;
 		}
-		public void setPlano(PlanoDeSaude plano) {
+		public void setPlano(PlanoSaude plano) {
 			this.plano = plano;
 		}
 		
