@@ -33,7 +33,7 @@ public class PlanoSaudeDAO {
 	public List<PlanoSaude> ConsultaTudo()throws Exception{
 		List<PlanoSaude> lista = new ArrayList<PlanoSaude>();
 		stmt = con.prepareStatement("SELECT * FROM PLANO_SAUDE");
-		stmt.executeQuery();
+		rs = stmt.executeQuery();
 		
 		while(rs.next()) {
 			lista.add(new PlanoSaude(
@@ -50,7 +50,7 @@ public class PlanoSaudeDAO {
 		List<PlanoSaude> lista = new ArrayList<PlanoSaude>();
 		stmt = con.prepareStatement("SELECT * FROM PLANO_SAUDE WHERE nome_plano LIKE ?");
 		stmt.setString(1, "%" + nome + "%");
-		stmt.executeQuery();
+		rs = stmt.executeQuery();
 		
 		while(rs.next()) {
 			lista.add(new PlanoSaude(
@@ -67,7 +67,7 @@ public class PlanoSaudeDAO {
 		List<PlanoSaude> lista = new ArrayList<PlanoSaude>();
 		stmt = con.prepareStatement("SELECT * FROM PLANO_SAUDE WHERE modalidade_plano LIKE ?");
 		stmt.setString(1, "%" + modalidade + "%");
-		stmt.executeQuery();
+		rs = stmt.executeQuery();
 		
 		while(rs.next()) {
 			lista.add(new PlanoSaude(

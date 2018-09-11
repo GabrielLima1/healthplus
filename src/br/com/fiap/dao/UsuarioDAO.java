@@ -1,4 +1,4 @@
-package br.com.fiap.dao;
+	package br.com.fiap.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -53,7 +53,7 @@ public class UsuarioDAO {
 		List<Usuario> lista =  new ArrayList<Usuario>();
 		stmt = con.prepareStatement("SELECT * FROM USUARIO WHERE nome_usuario LIKE ?");
 		stmt.setString(1, "%" + nome + "%");
-		stmt.executeQuery();
+		rs = stmt.executeQuery();
 		
 		while(rs.next()) {
 			lista.add(new  Usuario(
@@ -71,7 +71,7 @@ public class UsuarioDAO {
 		List<Usuario> lista =  new ArrayList<Usuario>();
 		stmt = con.prepareStatement("SELECT * FROM USUARIO WHERE email_usuario LIKE ?");
 		stmt.setString(1, "%" + email + "%");
-		stmt.executeQuery();
+		rs = stmt.executeQuery();
 		
 		while(rs.next()) {
 			lista.add(new  Usuario(
