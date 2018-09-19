@@ -3,6 +3,7 @@ package br.com.fiap.beans;
 public class Usuario {
 	private int codigo;
 	private String nome;
+	private String crm;
 	private String email;
 	private String senha;
 	
@@ -19,6 +20,15 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public String getCrm() {
+		return crm;
+	}
+	
+	public void setCrm(String crm) {
+		this.crm = crm;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -32,10 +42,11 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
-	public Usuario(int codigo, String nome, String email, String senha) {
+	public Usuario(int codigo, String nome, String crm, String email, String senha) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
+		this.crm = crm;
 		this.email = email;
 		this.senha = senha;
 	}
@@ -48,6 +59,7 @@ public class Usuario {
 	public void setAll(int codigo, String nome, String email, String senha) {
 		setCodigo(codigo);
 		setNome(nome);
+		setCrm(crm);
 		setEmail(email);
 		setSenha(senha);
 	} 
@@ -55,6 +67,7 @@ public class Usuario {
 	public String getAll() {
 		return "Código: " + codigo + "\n"  +
 				"Nome: " + nome + "\n" + 
+				"CRM: " + crm + "\n" +
 				"Email" + email ;	
 	}
 	

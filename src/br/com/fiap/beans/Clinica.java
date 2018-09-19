@@ -2,216 +2,156 @@ package br.com.fiap.beans;
 
 public class Clinica {
 
+		private int codigo;
 		private String nome;
-		private String logradouro;
-		private String bairro;
-		private String cidade;
-		private String estado;
-		private String cep;
-		private String telefone;
-		private String site;
 		private String email;
 		private String cnpj;
+		private String site;
 		private String horario;
-		private Especialidade especialidade;
-		private PlanoSaude plano;
-			
+		private String delete;
+		private int busca;
+		private String telefone;
+		private Usuario usuario;
+		private Endereco endereco;
 		
-		public Clinica() {
-			super();
+		
+		public int getCodigo() {
+			return codigo;
 		}
-
-
-		public Clinica(String nome, String logradouro, String bairro, String cidade, String estado, String cep,
-				String telefone, String site, String email, String cnpj, String horario, Especialidade especialidade,
-				PlanoSaude plano) {
-			super();
-			setNome(nome);
-			setLogradouro(logradouro);
-			setBairro(bairro);
-			setCidade(cidade);
-			setEstado(estado);
-			setCep(cep);
-			setTelefone(telefone);
-			setSite(site);
-			setEmail(email);
-			setCnpj(cnpj);
-			setHorario(horario);
-			setEspecialidade(especialidade);
-			setPlano(plano);
-		}
-		
-		
-		public void setAll(String nome, String logradouro, String bairro, String cidade, String estado, String cep,
-				String telefone, String site, String email, String cnpj, String horario, Especialidade especialidade,
-				PlanoSaude plano) {
-			setNome(nome);
-			setLogradouro(logradouro);
-			setBairro(bairro);
-			setCidade(cidade);
-			setEstado(estado);
-			setCep(cep);
-			setTelefone(telefone);
-			setSite(site);
-			setEmail(email);
-			setCnpj(cnpj);
-			setHorario(horario);
-			setEspecialidade(especialidade);
-			setPlano(plano);
-		}
-		
-		public String getAll(){
-			return	"Nome: " + nome + "\n" +
-					"Logradouro : " + logradouro + "\n" +
-					"Bairro : " + bairro + "\n" +
-					"Cidade : " + cidade + "\n" +
-					"Estado : " + estado + "\n" +
-					"CEP : " + cep + "\n" +
-					"Telefone : " + telefone + "\n" +
-					"Site : " + site + "\n" +
-					"Email : " + email + "\n" +
-					"CNPJ : " + cnpj + "\n" +
-					"Horario : " + horario + "\n" +
-					"Especialidade : " + especialidade.getAll() + "\n" +
-					"Plano de Saúde : " + plano.getAll();		
-			}
-		
 		
 		public String getNome() {
 			return nome;
 		}
-		public void setNome(String nome) {
-			this.nome = nome.toUpperCase();
-			if(nome.length() <= 40) {
-				this.nome = nome;
-			} else {
-				this.nome = nome.substring(0, 40);
-			}
-		}
-		public String getLogradouro() {
-			return logradouro;
-		}
-		public void setLogradouro(String logradouro) {
-			this.logradouro = logradouro;
-			if(logradouro.length() <= 150) {
-				this.logradouro = logradouro;
-			} else {
-				this.logradouro = logradouro.substring(0, 150);
-				}
-		}
-		public String getBairro() {
-			return bairro;
-
-		}
-		public void setBairro(String bairro) {
-			this.bairro = bairro;
-			if(bairro.length() <= 40) {
-				this.bairro = bairro;
-			} else {
-				this.bairro = bairro.substring(0, 40);
-			}
-		}
-		public String getCidade() {
-			return cidade;
-		}
-		public void setCidade(String cidade) {
-			this.cidade = cidade;
-			if(cidade.length() <= 50) {
-				this.cidade = cidade;
-			} else {
-				this.cidade = cidade.substring(0, 50);
-			}
-		}
-		public String getEstado() {
-			return estado;
-		}
-		public void setEstado(String estado) {
-			this.estado = estado;
-		}
-		public String getCep() {
-			return cep;
-		}
-		public void setCep(String cep) {
-			this.cep = cep;
-			if(cep.length() <= 10) {
-				this.cep = cep;
-			} else {
-				this.cep = cep.substring(0, 10);
-			}
-		}
-		public String getTelefone() {
-			return telefone;
-		}
-		public void setTelefone(String telefone) {
-			this.telefone = telefone;
-			if(telefone.length() <= 10) {
-				this.telefone = telefone;
-			} else {
-				this.telefone = telefone.substring(0, 10);
-				}
-		}
-		public String getSite() {
-			return site;
-		}
-		public void setSite(String site) {
-			this.site = site;
-			if(site.length() <= 60) {
-				this.site = site;
-			} else {
-				this.site = site.substring(0, 60);
-			}
-		}
+		
 		public String getEmail() {
 			return email;
 		}
-		public void setEmail(String email) {
-			this.email = email.toLowerCase();
-			if(email.indexOf(".") < 0 || email.indexOf("@") < 0) {
-				this.email = "erro@erro.com.br";
-			} else {
-				this.email = email.toLowerCase();	
-			}
-			if(email.length() <= 30) {
-				this.email = email;
-			} else {
-				this.email = email.substring(0, 30);
-			}
-
-		}
+		
 		public String getCnpj() {
 			return cnpj;
 		}
-		public void setCnpj(String cnpj) {
-			this.cnpj = cnpj;
-			if(cnpj.length() <= 18) {
-				this.cnpj = cnpj;
-			} else {
-				this.cnpj = cnpj.substring(0, 18);
-			}
+		
+		public String getSite() {
+			return site;
 		}
+		
 		public String getHorario() {
 			return horario;
 		}
+		
+		public String getDelete() {
+			return delete;
+		}
+		
+		public int getBusca() {
+			return busca;
+		}
+		
+		public String getTelefone() {
+			return telefone;
+		}
+		
+		public Usuario getUsuario() {
+			return usuario;
+		}
+		
+		public Endereco getEndereco() {
+			return endereco;
+		}
+
+		public void setCodigo(int codigo) {
+			this.codigo = codigo;
+		}
+
+		public void setNome(String nome) {
+			this.nome = nome;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+		public void setCnpj(String cnpj) {
+			this.cnpj = cnpj;
+		}
+
+		public void setSite(String site) {
+			this.site = site;
+		}
+
 		public void setHorario(String horario) {
 			this.horario = horario;
-			if(horario.length() <= 25) {
-				this.horario = horario;
-			} else {
-				this.horario = horario.substring(0, 25);
-			}
 		}
-		public Especialidade getEspecialidade() {
-			return especialidade;
+
+		public void setDelete(String delete) {
+			this.delete = delete;
 		}
-		public void setEspecialidade(Especialidade especialidade) {
-			this.especialidade = especialidade;
+
+		public void setBusca(int busca) {
+			this.busca = busca;
 		}
-		public PlanoSaude getPlano() {
-			return plano;
+
+		public void setTelefone(String telefone) {
+			this.telefone = telefone;
 		}
-		public void setPlano(PlanoSaude plano) {
-			this.plano = plano;
+
+		public void setUsuario(Usuario usuario) {
+			this.usuario = usuario;
 		}
+
+		public void setEndereco(Endereco endereco) {
+			this.endereco = endereco;
+		}
+
+		public Clinica(int codigo, String nome, String email, String cnpj, String site, String horario, String delete,
+				int busca, String telefone, Usuario usuario, Endereco endereco) {
+			super();
+			this.codigo = codigo;
+			this.nome = nome;
+			this.email = email;
+			this.cnpj = cnpj;
+			this.site = site;
+			this.horario = horario;
+			this.delete = delete;
+			this.busca = busca;
+			this.telefone = telefone;
+			this.usuario = usuario;
+			this.endereco = endereco;
+		}
+
+		public Clinica() {
+			super();
+		}
+		
+		public void setAll (int codigo, String nome, String email, String cnpj, String site, String horario, String delete,
+		int busca, String telefone, Usuario usuario, Endereco endereco) {
+			setCodigo(codigo);
+			setNome(nome);
+			setEmail(email);
+			setCnpj(cnpj);
+			setSite(site);
+			setHorario(horario);
+			setDelete(delete);
+			setBusca(busca);
+			setTelefone(telefone);
+			setUsuario(usuario);
+			setEndereco(endereco);
+		}
+		
+		public String getAll(int codigo, String nome, String email, String cnpj, String site, String horario, String delete,
+		int busca, String telefone, Usuario usuario, Endereco endereco) {
+			return "Código: " + codigo + "\n"+
+					"Nome: " + nome + "\n"+
+					"Email: " + email + "\n"+
+					"CNPJ: " + cnpj + "\n"+
+					"Site: " + site + "\n"+
+					"Horário: " + horario + "\n"+
+					"Telefone: " + telefone + "\n"+
+					"Usuario: " + usuario +  "\n"+
+					"Endereco: " + endereco;
+		}
+			
+		
 		
 		
 

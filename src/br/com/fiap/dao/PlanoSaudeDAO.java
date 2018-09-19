@@ -21,10 +21,9 @@ public class PlanoSaudeDAO {
 	}
 	
 	public String gravar(PlanoSaude plan) throws Exception{
-		stmt = con.prepareStatement("INSERT INTO PLANO_SAUDE (cod_plano, nome_plano, modalidade_plano) VALUES(?, ?, ?)");
-		stmt.setInt(1, plan.getCodigo());
-		stmt.setString(2, plan.getNome());
-		stmt.setString(3, plan.getModalidade());
+		stmt = con.prepareStatement("INSERT INTO PLANO_SAUDE VALUES(sq_plano_saude.nextval, ?, ?)");
+		stmt.setString(1, plan.getNome());
+		stmt.setString(2, plan.getModalidade());
 		stmt.executeUpdate();
 		return "Cadastrado com Sucesso!";
 	}
@@ -44,6 +43,25 @@ public class PlanoSaudeDAO {
 		}
 		return lista;
 	}
+	
+	//metodo de consultar por codigo
+	public PlanoSaude consultarPorCodigo(int codigo)throws Exception{
+			stmt = con.prepareStatement("SELECT * FROM PLANO_SAUDE WHERE cod_plano = ?");
+			stmt.setInt(1, codigo);
+			rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				return new PlanoSaude(
+						rs.getInt("cod_plano"),
+						rs.getString("nome_plano"),
+						rs.getString("modalidade_plano")
+						);
+			}
+			else {
+				return new PlanoSaude();
+			}
+		}
+		
 	
 	//metodo que consulta nome
 	public List<PlanoSaude> ConsultarPorNome(String nome) throws Exception{
@@ -79,16 +97,27 @@ public class PlanoSaudeDAO {
 		return lista;
 	}
 	
-	//metodo que delete usuario atraves do cod_plano
-		public int apagar(int numero) throws Exception{
-			stmt = con.prepareStatement("DELETE FROM USUARIO WHERE cod_plano = ?");
-			stmt.setInt(1, numero);
-			return stmt.executeUpdate();
-		}
-		
-		// metodo para fechar conexão com o banco
-			public void fechar() throws Exception{
-				con.close();
-			}
+	//metodo que atualiza o PlanoSaude
+	public String atualizaPlanoSaude(PlanoSaude plan)throws Exception{
+		stmt = con.prepareStatement("UPDATE PLANO_SAUDE SET nome_plano = ?, modalidade_plano = ? WHERE cod_plano = ?");
+		stmt.setString(1, plan.getNome());
+		stmt.setString(2, plan.getModalidade());
+		stmt.setInt(3, plan.getCodigo());
+		stmt.executeUpdate();
+		return "Plano Saude Atualizado!";
+	}
 	
+	
+	//metodo que delete usuario atraves do cod_plano
+	public int apagar(int numero) throws Exception{
+		stmt = con.prepareStatement("DELETE FROM USUARIO WHERE cod_plano = ?");
+		stmt.setInt(1, numero);
+		return stmt.executeUpdate();
+	}
+	
+	// metodo para fechar conexão com o banco
+		public void fechar() throws Exception{
+			con.close();
+		}
+
 }
