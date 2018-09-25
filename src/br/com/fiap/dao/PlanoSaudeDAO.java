@@ -64,7 +64,7 @@ public class PlanoSaudeDAO {
 		
 	
 	//metodo que consulta nome
-	public List<PlanoSaude> ConsultarPorNome(String nome) throws Exception{
+	public List<PlanoSaude> consultarPorNome(String nome) throws Exception{
 		List<PlanoSaude> lista = new ArrayList<PlanoSaude>();
 		stmt = con.prepareStatement("SELECT * FROM PLANO_SAUDE WHERE nome_plano LIKE ?");
 		stmt.setString(1, "%" + nome + "%");

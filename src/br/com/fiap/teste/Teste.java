@@ -1,7 +1,11 @@
 package br.com.fiap.teste;
 
-import br.com.fiap.beans.Especialidade;
-import br.com.fiap.bo.EspecialidadeBO;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.fiap.beans.PlanoSaude;
+import br.com.fiap.bo.PlanoSaudeBO;
 import br.com.fiap.excecao.Excecao;
 
 
@@ -11,14 +15,18 @@ public class Teste {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			EspecialidadeBO bo = new EspecialidadeBO();
-			Especialidade esp = new Especialidade();
+			List<PlanoSaude> lista =  new ArrayList<PlanoSaude>();
+			PlanoSaudeBO bo = new PlanoSaudeBO();
+			PlanoSaude plan = new PlanoSaude();
 			
-			esp.setCodigo(5);
-			//esp.setNome("Vamos");
+			plan.setCodigo(3);
+			//plan.setNome("");
+			plan.setModalidade("Puro");
 			
-		 Especialidade espe =  bo.excluirPorCodigoEspecialidade(getCodigo());
-			System.out.println(espe.getCodigo());
+			lista =  bo.pesquisarPorNomePlanoSaude(plan.getNome());
+			for(PlanoSaude p: lista) {
+				System.out.println(p.getNome());
+			}
 		
 			
 		}catch(Exception ex) {

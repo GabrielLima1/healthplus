@@ -1,11 +1,21 @@
 package br.com.fiap.bo;
 
+
 import br.com.fiap.beans.Especialidade;
 import br.com.fiap.dao.EspecialidadeDAO;
 
 public class EspecialidadeBO {
 	
-	public static String verificacaoInicial(Especialidade esp)throws Exception{
+	private Especialidade e;
+	private EspecialidadeDAO dao;
+	private String resposta;
+	
+	public EspecialidadeBO()throws Exception{
+		e = new Especialidade();
+		dao = new EspecialidadeDAO();
+	}
+	
+	public String verificacaoInicial(Especialidade esp)throws Exception{
 		
 		if(esp.getNome() ==  null || esp.getNome() ==  "" || esp.getNome().length()>60) {
 			return "Nome Especialidade Inválido!";
@@ -14,33 +24,35 @@ public class EspecialidadeBO {
 		return "OK";
 	}
 
-	public static String cadastroEspecialidade(Especialidade esp)throws Exception{
+	public String verificaExiste(Especialidade esp)throws Exception{
+		resposta = "VERIFICADO";
 		
-		String resposta = verificacaoInicial(esp);
+		e = dao.consultarPorCodigo(esp.getCodigo());
+		if(e.getCodigo()>0) {
+			dao.fechar();
+			return "Código Especialidade já Existe!";
+		}
+
+		e = dao.consultarPorNome(esp.getNome());
+		if(e.getNome() != null) {
+			dao.fechar();
+			return "Nome Especialidade já Existe!";
+		}
+		
+		return resposta;
+	}
+	
+	public String cadastroEspecialidade(Especialidade esp)throws Exception{
+		
+		 resposta = verificacaoInicial(esp);
 		
 		if(resposta.equals("OK")){
-				
-				EspecialidadeDAO dao = new EspecialidadeDAO();
-				Especialidade e = dao.consultarPorCodigo(esp.getCodigo());
-				
-				if(e.getCodigo()>0) {
-					dao.fechar();
-					return "Código Especialidade já Existe!";
-				}
-
-				e = dao.consultarPorNome(esp.getNome());
-				if(e.getNome() != null) {
-					return "Nome Especialidade já Existe!";
-				}
-				
-				resposta = "PASSOU";
+				resposta = verificaExiste(esp);
 		}
 		
 		esp.setNome(esp.getNome().toUpperCase());
 		
-		EspecialidadeDAO dao = new EspecialidadeDAO();
-		
-		if(resposta.equals("PASSOU")) {
+		if(resposta.equals("VERIFICADO")) {
 			resposta = dao.gravar(esp);
 			dao.fechar();
 			
@@ -48,16 +60,15 @@ public class EspecialidadeBO {
 		return resposta;
 	}
 	
-	public static String atualizarEspecialidade(Especialidade esp)throws Exception {
+	public String atualizarEspecialidade(Especialidade esp)throws Exception {
 		
-		String resposta = "";
+		resposta = "";
 		
-		if(esp.getCodigo() == 0) {
+		if(e.getCodigo() == 0) {
 			return "Código Usúario Inválido!";
 		}
 		
-		EspecialidadeDAO dao = new EspecialidadeDAO();
-		Especialidade e = dao.consultarPorCodigo(esp.getCodigo());
+		e = dao.consultarPorCodigo(esp.getCodigo());
 		
 		if(e.getCodigo()>0) {
 			resposta = verificacaoInicial(esp);
@@ -75,34 +86,31 @@ public class EspecialidadeBO {
 	}
 	
 	
-	public static Especialidade pesquisaPorCodigoEspecialidade(int codigo)throws Exception{
+	public Especialidade pesquisaPorCodigoEspecialidade(int codigo)throws Exception{
 		if(codigo < 1) {
 			return new Especialidade();
 		}
 		
-		EspecialidadeDAO dao = new EspecialidadeDAO();
-		Especialidade esp = dao.consultarPorCodigo(codigo);
+		e = dao.consultarPorCodigo(codigo);
 		dao.fechar();
-		return esp;
+		return e;
 	}
 	
-	public static Especialidade pesquisaPorNomeEspecialidade(String nome)throws Exception{
+	public Especialidade pesquisaPorNomeEspecialidade(String nome)throws Exception{
 		if(nome.length() < 1) {
 			return new Especialidade();
 		}
 		
-		EspecialidadeDAO dao = new EspecialidadeDAO();
-		Especialidade espe = dao.consultarPorNome(nome.toUpperCase());
+		e = dao.consultarPorNome(nome.toUpperCase());
 		dao.fechar();
-		return espe;
+		return e;
 		}
 	
-	public static int excluirPorCodigoEspecialidade(int codigo)throws Exception{
+	public int excluirPorCodigoEspecialidade(int codigo)throws Exception{
 		if(codigo < 1) {
 			return 0;
 		}
 		
-		EspecialidadeDAO dao = new EspecialidadeDAO();
 		int x = dao.apagar(codigo);
 		dao.fechar();
 		return x;
